@@ -1,0 +1,86 @@
+import React, { useState, useEffect } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
+const BinomialFermatVisualizer = () => {
+  const [power, setPower] = useState(3);
+  const [nRange, setNRange] = useState(10);
+  const [data, setData] = useState([]);
+
+  const binomialCoefficient = (n, k) => {
+    if (k === 0 || k === n) return 1;
+    return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k);
+  };
+
+  const expansionTerm = (n, power) => {
+    let sum = 0;
+    for (let k = 1; k <= power; k++) {
+      sum += Math.pow(-1, k + 1) * binomialCoefficient(power, k) * Math.pow(n, power - k);
+    }
+    return sum;
+  };
+
+  const nthRoot = (num, n) => Math.pow(Math.abs(num), 1 / n) * Math.sign(num);
+
+  useEffect(() => {
+    const newData = [];
+    for (let n = 2; n <= nRange; n++) {
+      const expansionValue = expansionTerm(n, power);
+      const nthRootValue = nthRoot(expansionValue, power);
+      newData.push({
+        n,
+        expansionTerm: expansionValue,
+        nthRoot: nthRootValue,
+        diffFromN: n - nthRootValue,
+        nMinus1: n - 1,
+      });
+    }
+    setData(newData);
+  }, [power, nRange]);
+
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Generalized Binomial Theorem and Fermat's Last Theorem Visualizer</h1>
+      <div className="mb-4">
+        <label className="block mb-2">
+          Power (p):
+          <input
+            type="range"
+            min="3"
+            max="10"
+            value={power}
+            onChange={(e) => setPower(Number(e.target.value))}
+            className="w-full"
+          />
+          {power}
+        </label>
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2">
+          N Range:
+          <input
+            type="range"
+            min="5"
+            max="20"
+            value={nRange}
+            onChange={(e) => setNRange(Number(e.target.value))}
+            className="w-full"
+          />
+          {nRange}
+        </label>
+      </div>
+      <LineChart width={600} height={400} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="n" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="nthRoot" stroke="#8884d8" name={`${power}th root of expansion term`} />
+        <Line type="monotone" dataKey="diffFromN" stroke="#82ca9d" name={`n - ${power}th root`} />
+        <Line type="monotone" dataKey="n" stroke="#ffc658" name="n" />
+        <Line type="monotone" dataKey="nMinus1" stroke="#ff7300" name="n-1" />
+      </LineChart>
+    </div>
+  );
+};
+
+export default BinomialFermatVisualizer;
