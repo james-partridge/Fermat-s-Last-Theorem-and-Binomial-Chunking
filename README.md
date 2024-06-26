@@ -57,4 +57,18 @@ For any integers n > 1 and p > 2:
 2. There exist no integer solutions to the equation:  
 (n-1)ᵖ + (ᵖ√(nᵖ - (n-1)ᵖ))ᵖ = nᵖ  
 3. The non-existence of integer solutions to this equation is equivalent to the non-existence of positive integer solutions to Fermat's equation aᵖ + bᵖ = cᵖ for p > 2.  
-4. The functions f(n) = ᵖ√(nᵖ - (n-1)ᵖ) and g(n) = n approach each other asymptotically as n increases, but never intersect for any integer n > 1 and p > 2.  
+4. The functions f(n) = ᵖ√(nᵖ - (n-1)ᵖ) and g(n) = n approach each other asymptotically as n increases, but never intersect for any integer n > 1 and p > 2.
+
+To Do  
+
+1. Understand the slopes of the the nth root of the expansion term and nth minus 1 root.  
+2. Analyze the asymptomatic behavior of the curves produced by these lines.
+3. Study other asymptomatic behavior in:  
+   -Prime Number Theorem  
+   -Riemann Zeta Function  
+   -Prime gaps  
+   -Goldbach's conjecture  
+   -Primes in arithmetic progressions and Dirichlet's theorem  
+   -Twin Prime Conjecture  
+   -Primorial function  
+   -Chebyshev functions  
