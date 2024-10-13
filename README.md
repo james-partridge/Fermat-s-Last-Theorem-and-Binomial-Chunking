@@ -15,9 +15,7 @@ The term Σ(i=1 to k) (-1)^(i+1) * (k choose i) * n^(k-i) in the binomial expans
 
 _____________________________
 
-The idea is "chunk" binomial expansions into Fermat's Last theorem. Namely, Fermat's last theorem posits that there is no value n>2 where a^n + b^n = c^n. This was proven true by Andrew Wiles and Richard Taylor in 1995 via the Taniyama–Shimura conjecture and became subsequently known as the modularity theorem.
-
-This idea relies on binomial expansions of a single variable. For example,
+The idea is to "chunk" binomial expansions for any n^k into Fermat's Last theorem using a single variable. For example,
 
 n^2 can be represented as n^2 = (n-1)^2 + 2n- 1  
 n^3 can be represented as n^3 = (n-1)^3 +3n^2 -3n+1  
@@ -30,22 +28,6 @@ b^n corresponds to (-3n^2+3n-1)
 c^n corresponds to n^3  
 
 The relationship relies on c^n corresponding to n^3, a^n corresponding to (n-1)^3, and b^n is _always_ corresponding  as the remainder of the binomial expansion (this can be extended to any power of n). The binomial expansion creates a term that, when taken to the appropriate root, falls between two consecutive integers, preventing integer solutions.  
-
-This relationship can be represented with javascript, demonstrating the following principles:  
-
-1. It shows that the relationship between n and the expansion term is more complex than a simple linear relationship.  
-2. For the nth root line, the curve suggests that as n increases, the rate of growth of the nth root of the expansion term changes slightly.  
-3. For the difference line, the curve indicates that the gap between n and the nth root of the expansion term doesn't remain constant or change linearly as n increases.  
-4. This non-linearity is part of why finding integer solutions to Fermat's equation is impossible for powers greater than 2. If these relationships were linear, it might be possible to find integer solutions at regular intervals.
-
-Based on the graphical representation, we observe:
-
-1. If these lines did intersect, it would mean we've found an integer solution to the equation aᵖ + bᵖ = cᵖ, where:  
-a = n-1  
-b = ᵖ√(nᵖ - (n-1)ᵖ)  (pth root)  
-c = n  
-2. The fact that they don't intersect is another way of visualizing why there are no integer solutions to Fermat's equation for powers greater than 2.  
-3. For p = 2 (the Pythagorean theorem case), we do get intersections, which correspond to Pythagorean triples.  
 
 ______________________________________
 
